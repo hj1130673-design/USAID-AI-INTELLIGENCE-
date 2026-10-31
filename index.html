@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>USAID AI</title>
+
+<style>
+* {
+  margin: 0;
+    padding: 0;
+      box-sizing: border-box;
+      }
+
+      body {
+        background: #070b16;
+          color: white;
+            font-family: Arial, sans-serif;
+            }
+
+            header {
+              padding: 22px;
+                display: flex;
+                  justify-content: space-between;
+                    align-items: center;
+                      border-bottom: 1px solid #19243b;
+                      }
+
+                      .logo {
+                        font-size: 23px;
+                          font-weight: bold;
+                            color: #55aaff;
+                            }
+
+                            .menu {
+                              color: #aab9d1;
+                              }
+
+                              main {
+                                max-width: 850px;
+                                  margin: auto;
+                                    padding: 55px 20px;
+                                      text-align: center;
+                                      }
+
+                                      .orb {
+                                        width: 100px;
+                                          height: 100px;
+                                            margin: 15px auto 30px;
+                                              border-radius: 50%;
+                                                background: radial-gradient(circle, #65caff, #1765e9, #10152c);
+                                                  box-shadow: 0 0 45px #167aff88;
+                                                  }
+
+                                                  h1 {
+                                                    font-size: 38px;
+                                                      margin-bottom: 15px;
+                                                      }
+
+                                                      h1 span {
+                                                        color: #55aaff;
+                                                        }
+
+                                                        .subtitle {
+                                                          color: #9baac3;
+                                                            line-height: 1.6;
+                                                              margin-bottom: 35px;
+                                                              }
+
+                                                              .chat {
+                                                                background: #101a2d;
+                                                                  border: 1px solid #263957;
+                                                                    border-radius: 17px;
+                                                                      padding: 12px;
+                                                                        display: flex;
+                                                                          gap: 8px;
+                                                                          }
+
+                                                                          .chat input {
+                                                                            min-width: 0;
+                                                                              flex: 1;
+                                                                                background: transparent;
+                                                                                  border: none;
+                                                                                    outline: none;
+                                                                                      color: white;
+                                                                                        font-size: 15px;
+                                                                                          padding: 10px;
+                                                                                          }
+
+                                                                                          .chat button {
+                                                                                            background: #2388ff;
+                                                                                              border: none;
+                                                                                                border-radius: 11px;
+                                                                                                  padding: 12px 17px;
+                                                                                                    color: white;
+                                                                                                      font-weight: bold;
+                                                                                                      }
+
+                                                                                                      #answer {
+                                                                                                        margin-top: 20px;
+                                                                                                          padding: 18px;
+                                                                                                            background: #101a2d;
+                                                                                                              border-radius: 12px;
+                                                                                                                color: #c5d8f4;
+                                                                                                                  line-height: 1.6;
+                                                                                                                    text-align: left;
+                                                                                                                      display: none;
+                                                                                                                      }
+
+                                                                                                                      .tools {
+                                                                                                                        display: grid;
+                                                                                                                          grid-template-columns: repeat(2, 1fr);
+                                                                                                                            gap: 15px;
+                                                                                                                              margin-top: 35px;
+                                                                                                                              }
+
+                                                                                                                              .tool {
+                                                                                                                                padding: 23px 12px;
+                                                                                                                                  border: 1px solid #263957;
+                                                                                                                                    border-radius: 14px;
+                                                                                                                                      background: #101a2d;
+                                                                                                                                      }
+
+                                                                                                                                      .tool h3 {
+                                                                                                                                        margin-bottom: 8px;
+                                                                                                                                          color: #69b5ff;
+                                                                                                                                          }
+
+                                                                                                                                          .tool p {
+                                                                                                                                            font-size: 13px;
+                                                                                                                                              color: #9baac3;
+                                                                                                                                              }
+
+                                                                                                                                              footer {
+                                                                                                                                                text-align: center;
+                                                                                                                                                  padding: 30px;
+                                                                                                                                                    color: #71819e;
+                                                                                                                                                      font-size: 12px;
+                                                                                                                                                      }
+                                                                                                                                                      </style>
+                                                                                                                                                      </head>
+
+                                                                                                                                                      <body>
+
+                                                                                                                                                      <header>
+                                                                                                                                                        <div class="logo">USAID AI</div>
+                                                                                                                                                          <div class="menu">✦ INTELLIGENCE</div>
+                                                                                                                                                          </header>
+
+                                                                                                                                                          <main>
+
+                                                                                                                                                          <div class="orb"></div>
+
+                                                                                                                                                          <h1>Meet <span>USAID AI</span></h1>
+
+                                                                                                                                                          <p class="subtitle">
+                                                                                                                                                          Your intelligent workspace.<br>
+                                                                                                                                                          One platform. Endless possibilities.
+                                                                                                                                                          </p>
+
+                                                                                                                                                          <div class="chat">
+                                                                                                                                                            <input id="question" placeholder="Ask USAID AI anything...">
+                                                                                                                                                              <button onclick="askAI()">Send</button>
+                                                                                                                                                              </div>
+
+                                                                                                                                                              <div id="answer"></div>
+
+                                                                                                                                                              <div class="tools">
+
+                                                                                                                                                                <div class="tool">
+                                                                                                                                                                    <h3>✦ AI Chat</h3>
+                                                                                                                                                                        <p>Chat with your AI assistant</p>
+                                                                                                                                                                          </div>
+
+                                                                                                                                                                            <div class="tool">
+                                                                                                                                                                                <h3>✎ AI Writer</h3>
+                                                                                                                                                                                    <p>Create captions and content</p>
+                                                                                                                                                                                      </div>
+
+                                                                                                                                                                                        <div class="tool">
+                                                                                                                                                                                            <h3>文 Translator</h3>
+                                                                                                                                                                                                <p>Explore different languages</p>
+                                                                                                                                                                                                  </div>
+
+                                                                                                                                                                                                    <div class="tool">
+                                                                                                                                                                                                        <h3>▧ AI Studio</h3>
+                                                                                                                                                                                                            <p>Creative tools coming soon</p>
+                                                                                                                                                                                                              </div>
+
+                                                                                                                                                                                                              </div>
+                                                                                                                                                                                                              </main>
+
+                                                                                                                                                                                                              <footer>
+                                                                                                                                                                                                              USAID AI © 2026 — Built for the Future
+                                                                                                                                                                                                              </footer>
+
+                                                                                                                                                                                                              <script>
+                                                                                                                                                                                                              function askAI() {
+                                                                                                                                                                                                                const question = document.getElementById("question").value.trim();
+                                                                                                                                                                                                                  const answer = document.getElementById("answer");
+
+                                                                                                                                                                                                                    if (!question) {
+                                                                                                                                                                                                                        answer.style.display = "block";
+                                                                                                                                                                                                                            answer.innerText = "Please enter a question first.";
+                                                                                                                                                                                                                                return;
+                                                                                                                                                                                                                                  }
+
+                                                                                                                                                                                                                                    answer.style.display = "block";
+                                                                                                                                                                                                                                      answer.innerText =
+                                                                                                                                                                                                                                          "Welcome to USAID AI! Your question is: " +
+                                                                                                                                                                                                                                              question +
+                                                                                                                                                                                                                                                  ". The real AI connection will be added in the next development stage.";
+                                                                                                                                                                                                                                                  }
+                                                                                                                                                                                                                                                  </script>
+
+                                                                                                                                                                                                                                                  </body>
+                                                                                                                                                                                                                                                  </html>
