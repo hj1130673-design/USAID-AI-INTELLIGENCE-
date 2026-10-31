@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d1b">
+<title>USAID AI — Your Intelligent Workspace</title>
+<style>
+:root{--bg:#080d1b;--panel:#101a2d;--panel2:#0c1425;--line:#263957;--blue:#55aaff;--cyan:#6ce5ff;--muted:#9baac3;--white:#f4f8ff}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 50% -20%,#18335b 0,transparent 42%),var(--bg);color:var(--white);font:15px Arial,sans-serif;min-height:100vh}
+button,input,textarea,select{font:inherit}button{cursor:pointer}
+header{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;border-bottom:1px solid #1b2a43;background:#080d1beF;position:sticky;top:0;z-index:5;backdrop-filter:blur(16px)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;color:var(--blue)}.brandmark{width:34px;height:34px;border-radius:11px;background:linear-gradient(135deg,#67dfff,#2879ff);display:grid;place-items:center;color:#071326;box-shadow:0 0 24px #2388ff66}
+.header-right{color:var(--muted);font-size:12px}
+.layout{display:grid;grid-template-columns:235px minmax(0,1fr);max-width:1440px;margin:auto;min-height:calc(100vh - 68px)}
+aside{padding:22px 14px;border-right:1px solid #1b2a43;background:#091122}
+.navlabel{font-size:10px;color:#7084a4;letter-spacing:1.6px;padding:12px 12px 8px}
+.nav{display:flex;align-items:center;gap:12px;width:100%;border:1px solid transparent;background:transparent;color:#bdcbe0;padding:12px;border-radius:12px;text-align:left;margin:3px 0}
+.nav:hover,.nav.active{background:#142440;border-color:#284a76;color:#fff}.nav b{font-size:17px;width:20px;text-align:center;color:var(--cyan)}
+.aside-note{margin:24px 5px 0;padding:14px;border:1px solid var(--line);border-radius:13px;color:var(--muted);font-size:12px;line-height:1.5;background:#0d182b}
+main{padding:34px clamp(16px,4vw,55px);max-width:1150px;width:100%;margin:auto}
+.hero{text-align:center;padding:24px 0 28px}.orb{height:76px;width:76px;margin:0 auto 18px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#c5f7ff,#49baff 25%,#2362e5 58%,#10152c 78%);box-shadow:0 0 48px #168aff88;animation:pulse 3s infinite}
+@keyframes pulse{50%{box-shadow:0 0 65px #168affbb}}
+h1{font-size:clamp(30px,5vw,46px);margin:0 0 10px}h1 span{color:var(--blue)}.sub{color:var(--muted);line-height:1.6;margin:0}
+.page{display:none}.page.active{display:block}.pagehead{margin:5px 0 22px}.pagehead h2{font-size:25px;margin:0 0 7px}.pagehead p{color:var(--muted);margin:0;line-height:1.5}
+.card{background:linear-gradient(145deg,#111e34,#0c1527);border:1px solid var(--line);border-radius:17px;padding:18px;margin-bottom:15px;box-shadow:0 12px 35px #0002}
+.chatbox{min-height:270px;display:flex;flex-direction:column;gap:12px}.messages{display:flex;flex-direction:column;gap:10px;min-height:185px;max-height:48vh;overflow:auto}
+.msg{max-width:88%;padding:12px 14px;border-radius:14px;line-height:1.55;white-space:pre-wrap}.msg.ai{background:#172844;border:1px solid #29476d;align-self:flex-start}.msg.user{background:#1766b8;align-self:flex-end}
+.composer{display:flex;gap:9px;border:1px solid #345174;background:#091426;border-radius:14px;padding:8px}.composer input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:white;padding:9px}.primary{background:linear-gradient(135deg,#258bff,#1760d4);color:white;border:0;border-radius:11px;padding:11px 16px;font-weight:700}.secondary{background:#172944;color:#d9eaff;border:1px solid #345174;border-radius:11px;padding:10px 13px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.toolcard{background:#101a2d;border:1px solid var(--line);border-radius:15px;padding:18px;text-align:left;color:white}.toolcard:hover{border-color:#4a9cff;transform:translateY(-1px)}.toolcard .ico{font-size:24px}.toolcard h3{margin:12px 0 7px;color:#83c7ff}.toolcard p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+textarea,.field,select{width:100%;background:#091426;border:1px solid #345174;color:white;border-radius:12px;padding:13px;outline:none;margin:8px 0 12px}textarea{min-height:125px;resize:vertical}.actions{display:flex;gap:9px;flex-wrap:wrap}.hint{color:#8da2c1;font-size:12px;line-height:1.5}.result{white-space:pre-wrap;line-height:1.6;color:#d7e8ff;margin-top:14px}
+.preview{min-height:180px;border:1px dashed #345174;border-radius:14px;display:grid;place-items:center;text-align:center;color:var(--muted);padding:20px}
+footer{text-align:center;color:#71819e;font-size:12px;padding:28px}
+@media(max-width:760px){.layout{display:block}aside{position:sticky;top:68px;z-index:4;display:flex;overflow-x:auto;padding:8px;border-right:0;border-bottom:1px solid #1b2a43}.navlabel,.aside-note{display:none}.nav{white-space:nowrap;width:auto;flex:0 0 auto;padding:10px 12px;font-size:12px}.nav b{width:auto}.hero{padding-top:10px}main{padding:24px 14px}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:390px){.grid{grid-template-columns:1fr}.header-right{display:none}}
+</style>
+</head>
+<body>
+<header><div class="brand"><span class="brandmark">✦</span> USAID AI</div><div class="header-right">YOUR INTELLIGENT WORKSPACE · PREVIEW</div></header>
+<div class="layout">
+<aside>
+<div class="navlabel">WORKSPACE</div>
+<button class="nav active" data-page="home"><b>⌂</b> Home</button>
+<button class="nav" data-page="chat"><b>✦</b> AI Chat</button>
+<button class="nav" data-page="study"><b>▤</b> Study & Learn</button>
+<button class="nav" data-page="image"><b>▧</b> Image Studio</button>
+<button class="nav" data-page="business"><b>◈</b> Business</button>
+<button class="nav" data-page="voice"><b>♫</b> Voice</button>
+<div class="navlabel">MORE TOOLS</div>
+<button class="nav" data-page="writer"><b>✎</b> AI Writer</button>
+<button class="nav" data-page="translate"><b>文</b> Translator</button>
+<button class="nav" data-page="tools"><b>⚙</b> All Tools</button>
+<div class="aside-note">USAID AI is a developing project. Connect a secure AI backend to enable real AI answers and generation.</div>
+</aside>
+<main>
+<section id="home" class="page active">
+<div class="hero"><div class="orb"></div><h1>Meet <span>USAID AI</span></h1><p class="sub">One intelligent workspace for learning, creating and building.<br>Ask, explore and make something meaningful.</p></div>
+<div class="card"><h2 style="margin:0 0 8px">What can I help you with?</h2><p class="hint">Choose a workspace below. The current version is a frontend preview; real AI services need a secure backend.</p><div class="composer"><input id="homeq" placeholder="Ask anything…"><button class="primary" onclick="goChat()">Ask</button></div></div>
+<div class="grid">
+<button class="toolcard" onclick="showPage('chat')"><span class="ico">✦</span><h3>AI Chat</h3><p>Ask questions and explore ideas.</p></button>
+<button class="toolcard" onclick="showPage('study')"><span class="ico">▤</span><h3>Study & Learn</h3><p>Understand topics and practise learning.</p></button>
+<button class="toolcard" onclick="showPage('image')"><span class="ico">▧</span><h3>Image Studio</h3><p>Prepare prompts for creative images.</p></button>
+<button class="toolcard" onclick="showPage('business')"><span class="ico">◈</span><h3>Business</h3><p>Plan projects, brands and ideas.</p></button>
+</div></section>
+<section id="chat" class="page"><div class="pagehead"><h2>✦ AI Chat</h2><p>Your central conversation space.</p></div><div class="card chatbox"><div id="messages" class="messages"><div class="msg ai">Assalamualaikum! Welcome to USAID AI. I’m currently a preview assistant, not connected to a live AI model yet. You can explore the workspace, but I can’t provide genuine AI-generated answers until the secure backend is connected.</div></div><div class="composer"><input id="chatq" placeholder="Message USAID AI…" onkeydown="if(event.key==='Enter')sendChat()"><button class="primary" onclick="sendChat()">Send</button></div><p class="hint">Tip: Do not enter passwords, private keys or sensitive personal information.</p></div></section>
+<section id="study" class="page"><div class="pagehead"><h2>▤ Study & Learn</h2><p>A dedicated place for school subjects, explanations and revision.</p></div><div class="card"><label>Topic or question</label><textarea id="studyq" placeholder="Example: Explain photosynthesis in simple Urdu…"></textarea><div class="actions"><button class="primary" onclick="template('studyq','Study helper')">Prepare study request</button><button class="secondary" onclick="copyText('studyq')">Copy</button></div><div class="hint">Live tutoring, quizzes and step-by-step explanations will work after AI connection.</div></div></section>
+<section id="image" class="page"><div class="pagehead"><h2>▧ Image Studio</h2><p>Write a clear visual idea and prepare an image-generation prompt.</p></div><div class="card"><label>Describe your image</label><textarea id="imageq" placeholder="A futuristic blue AI workspace, cinematic lighting, wide composition…"></textarea><div class="actions"><button class="primary" onclick="template('imageq','Image generation')">Prepare prompt</button><button class="secondary" onclick="copyText('imageq')">Copy prompt</button></div><div class="preview" id="imagepreview">Your generated image will appear here after an image-generation service is connected.</div></div></section>
+<section id="business" class="page"><div class="pagehead"><h2>◈ Business Workspace</h2><p>Organise ideas for a project, brand or small business.</p></div><div class="card"><label>What are you planning?</label><textarea id="businessq" placeholder="Describe your business idea, audience and goal…"></textarea><div class="actions"><button class="primary" onclick="template('businessq','Business planning')">Prepare business brief</button><button class="secondary" onclick="copyText('businessq')">Copy</button></div><p class="hint">AI business plans, market research and budgeting support require a live AI connection. Verify important financial or legal decisions independently.</p></div></section>
+<section id="voice" class="page"><div class="pagehead"><h2>♫ Voice Studio</h2><p>Try browser voice input and spoken text on supported devices.</p></div><div class="card"><label>Speak or type text</label><textarea id="voiceq" placeholder="Type something for USAID AI to read aloud…"></textarea><div class="actions"><button class="primary" onclick="speakText()">▶ Speak text</button><button class="secondary" onclick="listenVoice()">🎙 Voice input</button><button class="secondary" onclick="stopVoice()">Stop</button></div><p id="voiceStatus" class="hint">Voice features depend on your browser and device. This is not a live Gemini-style voice conversation yet.</p></div></section>
+<section id="writer" class="page"><div class="pagehead"><h2>✎ AI Writer</h2><p>Draft captions, messages, stories and descriptions.</p></div><div class="card"><textarea id="writerq" placeholder="Tell the writer what you want to create…"></textarea><div class="actions"><button class="primary" onclick="template('writerq','Writing')">Prepare writing brief</button><button class="secondary" onclick="copyText('writerq')">Copy</button></div></div></section>
+<section id="translate" class="page"><div class="pagehead"><h2>文 Translator</h2><p>Prepare text for translation between languages.</p></div><div class="card"><label>Text to translate</label><textarea id="translateq" placeholder="Enter your text…"></textarea><label>Target language</label><select id="targetlang"><option>Urdu</option><option>English</option><option>Arabic</option><option>Sindhi</option><option>Chinese</option><option>Pashto</option></select><div class="actions"><button class="primary" onclick="template('translateq','Translate into '+document.getElementById('targetlang').value)">Prepare translation request</button><button class="secondary" onclick="copyText('translateq')">Copy</button></div><p class="hint">Actual translation will be enabled when the AI backend is connected.</p></div></section>
+<section id="tools" class="page"><div class="pagehead"><h2>⚙ All Tools</h2><p>More dedicated workspaces will be added here.</p></div><div class="grid"><div class="toolcard"><span class="ico">▧</span><h3>Document Helper</h3><p>Summaries and document questions — backend needed.</p></div><div class="toolcard"><span class="ico">⌘</span><h3>Code Helper</h3><p>Learn programming and understand code — backend needed.</p></div><div class="toolcard"><span class="ico">◉</span><h3>Research Assistant</h3><p>Research support and source checking — backend needed.</p></div><div class="toolcard"><span class="ico">✧</span><h3>Idea Generator</h3><p>Brainstorm and organise new ideas — backend needed.</p></div></div></section>
+<footer>USAID AI © 2026 · Built with curiosity and a commitment to learning.</footer>
+</main></div>
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav').forEach(n=>n.classList.toggle('active',n.dataset.page===id));window.scrollTo({top:0,behavior:'smooth'})}
+document.querySelectorAll('.nav').forEach(n=>n.addEventListener('click',()=>showPage(n.dataset.page)));
+function goChat(){let q=document.getElementById('homeq').value.trim();showPage('chat');if(q){document.getElementById('chatq').value=q;sendChat()}}
+function sendChat(){let input=document.getElementById('chatq'),q=input.value.trim();if(!q)return;let box=document.getElementById('messages');let u=document.createElement('div');u.className='msg user';u.textContent=q;box.appendChild(u);let a=document.createElement('div');a.className='msg ai';a.textContent='Thanks for your message. USAID AI is currently a frontend preview and is not connected to a live AI model. Your message has not been sent to an AI service. A secure backend connection is needed before I can understand and answer it.';box.appendChild(a);input.value='';box.scrollTop=box.scrollHeight}
+function template(id,label){let v=document.getElementById(id).value.trim();if(!v){alert('Please enter some details first.');return}let text=label+' request:\n'+v+'\n\nPrepared in USAID AI. Connect a secure AI service to process this request.';let el=document.createElement('div');el.className='result';el.textContent=text;let old=document.getElementById(id+'result');if(old)old.remove();el.id=id+'result';document.getElementById(id).parentNode.appendChild(el)}
+function copyText(id){let el=document.getElementById(id);if(el.value)navigator.clipboard?.writeText(el.value).then(()=>alert('Copied.')).catch(()=>alert('Copy is not supported here.'))}
+function speakText(){let t=document.getElementById('voiceq').value.trim();if(!t){document.getElementById('voiceStatus').textContent='Please type text first.';return}if(!('speechSynthesis'in window)){document.getElementById('voiceStatus').textContent='Text-to-speech is not supported in this browser.';return}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);speechSynthesis.speak(u);document.getElementById('voiceStatus').textContent='Reading text aloud using your browser.'}
+function stopVoice(){if('speechSynthesis'in window)speechSynthesis.cancel();document.getElementById('voiceStatus').textContent='Voice playback stopped.'}
+function listenVoice(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){document.getElementById('voiceStatus').textContent='Voice input is not supported in this browser. Try Chrome.';return}let r=new SR();r.lang='en-US';r.onresult=e=>{document.getElementById('voiceq').value=e.results[0][0].transcript;document.getElementById('voiceStatus').textContent='Voice input captured.'};r.onerror=()=>document.getElementById('voiceStatus').textContent='Voice input could not start. Check browser microphone permission.';r.start();document.getElementById('voiceStatus').textContent='Listening…'}
+</script>
+</body></html>
